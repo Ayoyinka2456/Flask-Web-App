@@ -6,6 +6,11 @@ pipeline {
         git 'Default'
     }
     stages {
+        stage('Echo') {
+            steps {
+                sh 'echo ${env.WORKSPACE}'
+            }
+        }
         stage('Clone Repository') {
             steps {
                 script {
