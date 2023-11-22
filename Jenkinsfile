@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Echo') {
             steps {
-                sh "echo \${env.WORKSPACE}"
+                sh "${env.WORKSPACE}"
             }
         }
         stage('Clone Repository') {
