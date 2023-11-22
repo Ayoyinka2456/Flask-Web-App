@@ -1,0 +1,20 @@
+---
+- name: Deploy Flask app
+  hosts: all
+  become: true
+  remote_user: root
+
+  tasks:
+    - name: Copy Flask app files
+      copy:
+        src: app.py
+        dest: ~/flask_dir/app.py
+
+    - name: Activate virtual environment
+      command: /bin/bash -c "source ~/flask_dir/.myenv/bin/activate"
+      
+    - name: Start Flask app
+      command: /bin/bash -c "source ~/flask_dir/.myenv/bin/activate && export FLASK_APP=~/flask_dir/app.py && ~/flask_dir/.myenv/bin/flask run --host=0.0.0.0 --port=5000"
+      async: 0
+      poll: 0
+...
