@@ -3,18 +3,26 @@
   hosts: all
   become: true
   remote_user: root
+  gather_facts: true
+
+  vars:
+    yaml_file: "some_value"
 
   tasks:
     - name: Copy Flask app files
       copy:
-        src: app.py
-        dest: ~/flask_dir/app.py
+        src: "{{ yaml_file }}"
+        dest: ~/flask_dir/{{ yaml_file }}
 
     - name: Activate virtual environment
       command: /bin/bash -c "source ~/flask_dir/.myenv/bin/activate"
-      
+
     - name: Start Flask app
-      command: /bin/bash -c "source ~/flask_dir/.myenv/bin/activate && export FLASK_APP=~/flask_dir/app.py && ~/flask_dir/.myenv/bin/flask run --host=0.0.0.0 --port=5000"
+      command: /bin/bash -c "source ~/flask_dir/.myenv/bin/activate && export FLASK_APP=~/flask_dir/{{ yaml_file }} && ~/flask_dir/.myenv/bin/flask run --host=0.0.0.0 --port=5000"
       async: 0
       poll: 0
 ...
+
+
+#Added vars to make this file performance dynamic....Find syntax below
+# ansible-playbook -e "yaml_file=<name of your python file>" deploy.yml -i hosts.ini
