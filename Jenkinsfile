@@ -3,7 +3,7 @@ pipeline {
         label 'flask-ansible'
     }
     tools {
-        git 'default'
+        git 'Default'
     }
     stages {
         stage('Clone Repository') {
