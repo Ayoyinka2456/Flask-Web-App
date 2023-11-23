@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Echo') {
             steps {
-                sh "sudo ${env.WORKSPACE}"
+                sh "chmod -R 755 ${env.WORKSPACE}"
             }
         }
         stage('Clone Repository') {
