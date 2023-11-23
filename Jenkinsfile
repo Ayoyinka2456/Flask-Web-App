@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Echo') {
             steps {
-                sh "${env.WORKSPACE}"
+                sh "sudo ${env.WORKSPACE}"
             }
         }
         stage('Clone Repository') {
