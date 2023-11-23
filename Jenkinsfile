@@ -15,23 +15,23 @@ pipeline {
             steps {
                 script {
                     // Specify the target directory
-                    def targetDir = "${env.WORKSPACE}/"
+                    def targetDir = "${env.WORKSPACE}"
                     // Clone the repository into the specified directory
                     dir(targetDir) {
-                        git branch: 'main', url: 'https://github.com/Ayoyinka2456/Flask-Web-App.git'
+                        git branch: "main", url: "https://github.com/Ayoyinka2456/Flask-Web-App.git"
                     }
                 }
             }
         }
         stage('Configure servers') {
             steps {
-                sh 'cd ${env.WORKSPACE}/ && ansible-playbook configuration.yml -i hosts.ini'
+                sh "cd ${env.WORKSPACE}/ && ansible-playbook configuration.yml -i hosts.ini"
             }
         }
         stage('Test with test.py file') {
 
             steps {
-                sh 'cd ${env.WORKSPACE}/ && ansible-playbook -e test.py deploy.yml -i hosts.ini'
+                sh "cd ${env.WORKSPACE}/ && ansible-playbook -e test.py deploy.yml -i hosts.ini"
             }
         }
         
