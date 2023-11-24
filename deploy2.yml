@@ -7,7 +7,7 @@
 
   vars:
   #   yaml_file: "{{ external_yaml_file | default('project.py') }}"
-    local_path: "${env.WORKSPACE}"
+    local_path: "{{ workspace_path |default('/home/ubuntu/workspace/ansible-demo') }}"
 
   tasks:
     # - name: Print out
