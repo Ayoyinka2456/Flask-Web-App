@@ -5,13 +5,15 @@
   remote_user: root
   gather_facts: true
 
-  # vars:
+  vars:
   #   yaml_file: "{{ external_yaml_file | default('project.py') }}"
-  #   local_path: "${env.WORKSPACE}"
+    local_path: "${env.WORKSPACE}"
 
   tasks:
     # - name: Print out
     #   command: /bin/bash -c "cat ${env.WORKSPACE}"
+    - name: Debug - List contents of the directory
+      command: ls -l "{{ local_path }}"
     - name: Copy Flask app files
       copy:
         src: "test.py"
