@@ -10,10 +10,18 @@
         update_cache: yes
       when: ansible_pkg_mgr == "apt"
 
-    - name: Update yum cache
-      yum:
-        update_cache: yes
-      when: ansible_pkg_mgr == "yum"
+    - name: Update package manager cache
+      block:
+        - name: Update yum cache
+          yum:
+            update_cache: yes
+          when: ansible_pkg_mgr == "yum"
+    
+        - name: Update dnf cache
+          dnf:
+            update_cache: yes
+          when: ansible_pkg_mgr == "dnf"
+      become: true
 
     - name: Install necessary packages for apt
       apt:
