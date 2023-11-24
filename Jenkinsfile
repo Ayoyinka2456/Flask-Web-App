@@ -31,6 +31,7 @@ pipeline {
         stage('Test with test.py file') {
 
             steps {
+                sh "ls"
                 sh "cd ${env.WORKSPACE}/ && ansible-playbook -e 'external_yaml_file=test.py' deploy.yml -i hosts.ini"
             }
         }
