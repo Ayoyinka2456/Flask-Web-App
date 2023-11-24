@@ -13,7 +13,7 @@
       copy:
         src: "{{ yaml_file }}"
         dest: ~/flask_dir/{{ yaml_file }}
-      remote_src: yes
+        remote_src: yes
 
     - name: Activate virtual environment
       command: /bin/bash -c "source ~/flask_dir/.myenv/bin/activate"
