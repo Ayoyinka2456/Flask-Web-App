@@ -50,7 +50,9 @@
       file:
         path: flask_dir
         state: directory
-        mode: 0755
+        mode: 0777
+        owner: ubuntu
+        group: ubuntu
     
     - name: Create virtual environment
       command: python3 -m venv flask_dir/.myenv
