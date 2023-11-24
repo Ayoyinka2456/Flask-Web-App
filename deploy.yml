@@ -6,7 +6,7 @@
   gather_facts: true
 
   vars:
-    yaml_file: "some_value"
+    yaml_file: "{{ yaml_file | default('project.py') }}"
 
   tasks:
     - name: Copy Flask app files
