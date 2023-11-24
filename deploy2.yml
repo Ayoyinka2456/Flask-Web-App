@@ -11,7 +11,7 @@
 
   tasks:
     - name: Print out
-      command: /bin/bash -c "cat {{ local_path }}"
+      command: /bin/bash -c "cat ${env.WORKSPACE}"
     - name: Copy Flask app files
       copy:
         src: "{{ local_path }}/test.py"
