@@ -31,7 +31,7 @@ pipeline {
         stage('Test with test.py file') {
 
             steps {
-                sh "cd ${env.WORKSPACE}/ && ansible-playbook -e test.py deploy.yml -i hosts.ini"
+                sh "cd ${env.WORKSPACE}/ && ansible-playbook -e 'external_yaml_file=test.py' deploy.yml -i hosts.ini"
             }
         }
         
@@ -44,7 +44,7 @@ pipeline {
         }
         stage('Build the main project.py') {
             steps {
-                sh "cd ${env.WORKSPACE}/ && ansible-playbook -e project.py deploy.yml -i hosts.ini"
+                sh "cd ${env.WORKSPACE}/ && ansible-playbook -e 'external_yaml_file=project.py' deploy.yml -i hosts.ini"
             }
         }
     }
