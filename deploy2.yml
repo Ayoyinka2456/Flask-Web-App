@@ -16,7 +16,7 @@
     #   command: ls -l "{{ local_path }}"
     - name: Copy Flask app files
       copy:
-        src: "/home/ubuntu/workspace/ansible-demo/test.py"
+        src: "/home/ubuntu/workspace/ansible-demo/test2.py"
         dest: "~/flask_dir/test.py"
         remote_src: yes
 
