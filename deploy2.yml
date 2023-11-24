@@ -7,12 +7,12 @@
 
   vars:
     yaml_file: "{{ external_yaml_file | default('project.py') }}"
-    local_path: "${env.WORKSPACE}/test.py"
+    local_path: "${env.WORKSPACE}/"
 
   tasks:
     - name: Copy Flask app files
       copy:
-        src: "{{ local_path }}"
+        src: "{{ local_path }}/test.py"
         dest: "~/flask_dir/{{ yaml_file }}"
         remote_src: yes
 
