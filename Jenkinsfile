@@ -32,7 +32,7 @@ pipeline {
 
             steps {
                 sh "ls"
-                sh "cd ${env.WORKSPACE}/ && ansible-playbook -e 'yaml_file=test.py' deploy2.yml -i hosts.ini"
+                sh "cd ${env.WORKSPACE}/ && ansible-playbook deploy2.yml -i hosts.ini"
             }
         }
         
