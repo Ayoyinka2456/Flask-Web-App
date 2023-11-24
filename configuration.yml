@@ -68,26 +68,26 @@
         executable: ~/flask_dir/.myenv/bin/pip
         state: present
 
-    - name: Allow incoming traffic on port 5000
-      ufw:
-        rule: allow
-        proto: tcp
-        port: 5000
-        comment: "Allow incoming traffic to Flask app"
-      when: ansible_pkg_mgr == "apt"
+    # - name: Allow incoming traffic on port 5000
+    #   ufw:
+    #     rule: allow
+    #     proto: tcp
+    #     port: 5000
+    #     comment: "Allow incoming traffic to Flask app"
+    #   when: ansible_pkg_mgr == "apt"
 
-    - name: Restart UFW
-      systemd:
-        name: ufw
-        state: restarted
-      when: ansible_pkg_mgr == "apt"
+    # - name: Restart UFW
+    #   systemd:
+    #     name: ufw
+    #     state: restarted
+    #   when: ansible_pkg_mgr == "apt"
 
-    - name: Allow incoming traffic on port 5000
-      command: firewall-cmd --zone=public --add-port=5000/tcp --permanent
-      become: true  # This command requires elevated privileges
-      when: ansible_pkg_mgr == "yum"
+    # - name: Allow incoming traffic on port 5000
+    #   command: firewall-cmd --zone=public --add-port=5000/tcp --permanent
+    #   become: true  # This command requires elevated privileges
+    #   when: ansible_pkg_mgr == "yum"
 
-    - name: Reload firewalld
-      command: firewall-cmd --reload
-      become: true
-      when: ansible_pkg_mgr == "yum"
+    # - name: Reload firewalld
+    #   command: firewall-cmd --reload
+    #   become: true
+    #   when: ansible_pkg_mgr == "yum"
