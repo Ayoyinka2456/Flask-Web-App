@@ -9,8 +9,6 @@
     yaml_file: "{{ external_yaml_file | default('project.py') }}"
 
   tasks:
-    - name: Print files
-      command: /bin/bash -c "pwd"
     - name: Copy Flask app files
       copy:
         src: "{{ yaml_file }}"
