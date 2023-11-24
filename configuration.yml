@@ -12,10 +12,10 @@
 
     - name: Update package manager cache
       block:
-        - name: Update yum cache
-          yum:
-            update_cache: yes
-          when: ansible_pkg_mgr == "yum"
+        # - name: Update yum cache
+        #   yum:
+        #     update_cache: yes
+        #   when: ansible_pkg_mgr == "yum"
     
         - name: Update dnf cache
           dnf:
