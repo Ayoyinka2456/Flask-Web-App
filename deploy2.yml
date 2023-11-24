@@ -14,7 +14,7 @@
     #   command: /bin/bash -c "cat ${env.WORKSPACE}"
     - name: Copy Flask app files
       copy:
-        src: "${env.WORKSPACE}/test.py"
+        src: "cd ${env.WORKSPACE}/test.py"
         dest: "~/flask_dir/test.py"
         remote_src: yes
 
