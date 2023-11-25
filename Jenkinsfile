@@ -28,20 +28,6 @@ pipeline {
                 sh "cd ${env.WORKSPACE}/ && ansible-playbook config2.yml -i hosts.ini"
             }
         }
-        // stage('Test with test.py file') {
-        //     steps {
-        //         sh "ls"
-        //         sh "cd ${env.WORKSPACE}/ && ansible-playbook deploy2.yml -i hosts.ini"
-        //     }
-        // }
-        
-        // stage('Delay') {
-        //     steps {
-        //         script {
-        //             sleep(time: 60, unit: 'SECONDS')
-        //         }
-        //     }
-        // }
         stage('Build the main project.py') {
             steps {
                 sh "cd ${env.WORKSPACE}/ && ansible-playbook -e 'external_yaml_file=project.py' deploy2.yml -i hosts.ini"
