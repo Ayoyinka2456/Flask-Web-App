@@ -23,9 +23,10 @@
     #   when: ansible_pkg_mgr == "apt"
     - name: Install Python 3
       become: true
-      package:
+      yum:
         name: python3
         state: present
+      when: ansible_pkg_mgr == "yum"
 
     - name: Install necessary packages
       package:
