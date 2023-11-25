@@ -29,7 +29,9 @@ pipeline {
             }
         }
         stage('Test with test.py file') {
-
+            agent {
+        label 'flask-ansible'
+            }
             steps {
                 sh "ls"
                 sh "cd ${env.WORKSPACE}/ && ansible-playbook deploy2.yml -i hosts.ini"
