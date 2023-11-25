@@ -38,8 +38,8 @@
         path: flask_dir
         state: directory
         mode: 0777
-        owner: "{{ 'centos' if ansible_distribution == 'CentOS' else 'ubuntu' }}"
-        group: "{{ 'centos' if ansible_distribution == 'CentOS' else 'ubuntu' }}"
+        owner: "{{ 'ubuntu' if ansible_distribution == 'ubuntu' else 'ec2-user' }}"
+        group: "{{ 'ubuntu' if ansible_distribution == 'ubuntu' else 'ec2-user' }}"
         
     - name: Remove existing flask_dir
       file:
