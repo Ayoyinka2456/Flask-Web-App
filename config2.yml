@@ -10,27 +10,26 @@
         update_cache: yes
       when: ansible_pkg_mgr == "apt"
 
-    - name: Install necessary packages for apt
-      apt:
-        name:
-          - python3-pip
-          - python3-dev
-          - build-essential
-          - python3-venv
-          - git
-          - ufw
-        state: present
-      when: ansible_pkg_mgr == "apt"
+    # - name: Install necessary packages for apt
+    #   apt:
+    #     name:
+    #       - python3-pip
+    #       - python3-dev
+    #       - build-essential
+    #       - python3-venv
+    #       - git
+    #       - ufw
+    #     state: present
+    #   when: ansible_pkg_mgr == "apt"
 
-    - name: Install necessary packages for dnf
-      dnf:
+    - name: Install necessary packages
+      package:
         name:
           - python3-pip
           - python3-devel
+          - python3-venv
           - git
-          - firewalld
         state: present
-      when: ansible_pkg_mgr == "dnf" or ansible_pkg_mgr == "yum"
 
     - name: Install necessary packages for yum
       yum:
