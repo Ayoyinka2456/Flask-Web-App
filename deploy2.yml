@@ -14,11 +14,11 @@
     #   command: /bin/bash -c "cat ${env.WORKSPACE}"
     # - name: Debug - List contents of the directory
     #   command: ls -l "{{ local_path }}"
-    - name: Copy Flask app files
-      copy:
-        src: "/home/ubuntu/workspace/ansible-demo/test2.py"
-        dest: "~/flask_dir/test.py"
-        remote_src: yes
+    # - name: Copy Flask app files
+    #   copy:
+    #     src: "/home/ubuntu/workspace/ansible-demo/test2.py"
+    #     dest: "~/flask_dir/test.py"
+    #     remote_src: yes
 
     - name: Activate virtual environment
       command: /bin/bash -c "source ~/flask_dir/.myenv/bin/activate"
