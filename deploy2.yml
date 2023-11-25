@@ -4,22 +4,7 @@
   become: true
   remote_user: root
   gather_facts: true
-
-  vars:
-  #   yaml_file: "{{ external_yaml_file | default('project.py') }}"
-    # local_path: "~/"
-
   tasks:
-    # - name: Print out
-    #   command: /bin/bash -c "cat ${env.WORKSPACE}"
-    # - name: Debug - List contents of the directory
-    #   command: ls -l "{{ local_path }}"
-    # - name: Copy Flask app files
-    #   copy:
-    #     src: "/home/ubuntu/workspace/ansible-demo/test2.py"
-    #     dest: "~/flask_dir/test.py"
-    #     remote_src: yes
-
     - name: Activate virtual environment
       command: /bin/bash -c "source ~/flask_dir/.myenv/bin/activate"
 
@@ -27,3 +12,12 @@
       command: /bin/bash -c "export FLASK_APP=~/flask_dir/project.py && ~/flask_dir/.myenv/bin/flask run --host=0.0.0.0 --port=5000"
       async: 0
       poll: 0
+      
+    - name: Get the PID of the Flask app
+      shell: "ps aux | grep 'python3 project.py' | grep -v grep | awk '{print $2}'"
+      register: flask_pid
+      ignore_errors: yes
+
+    - name: Stop Flask app after 60 seconds
+      shell: "sleep 60 && kill -TERM {{ flask_pid.stdout }}"
+      ignore_errors: yes
