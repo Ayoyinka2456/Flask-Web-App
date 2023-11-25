@@ -9,8 +9,7 @@
       apt:
         update_cache: yes
       when: ansible_pkg_mgr == "apt"
-
-   - name: Install necessary packages for apt
+    - name: Install necessary packages for apt
       apt:
         name:
           - python3-pip
