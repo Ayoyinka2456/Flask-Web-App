@@ -21,6 +21,11 @@
     #       - ufw
     #     state: present
     #   when: ansible_pkg_mgr == "apt"
+    - name: Install Python 3
+      become: true
+      package:
+        name: python3
+        state: present
 
     - name: Install necessary packages
       package:
