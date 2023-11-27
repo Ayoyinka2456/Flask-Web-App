@@ -27,11 +27,11 @@
     #   ignore_errors: yes
 
     - name: Start Flask app
-      command: /bin/bash -c "export FLASK_APP=/home/{{x}}/flask_dir/project.py && /home/{{x}}/flask_dir/.myenv/bin/flask run --host=0.0.0.0 --port=5000"
+      command: /bin/bash -c "export FLASK_APP=~/flask_dir/project.py && ~/flask_dir/.myenv/bin/flask run --host=0.0.0.0 --port=5000"
       async: 0
       poll: 0
       environment:
-        HOME: /home/{{x}}/  # Set the home directory explicitly
+        HOME: ~/  # Set the home directory explicitly
     
     - name: Get the PID of the Flask app
       command: "pgrep -f 'python3 /full/path/to/flask_dir/project.py'"
