@@ -5,18 +5,14 @@
   remote_user: root
   gather_facts: true
   tasks:
-    - name: Set x to the current user
-      set_fact:
-        x: "{{ ansible_env.USER }}"
-
     - name: Activate virtual environment
       command: /bin/bash -c "source ~/flask_dir/.myenv/bin/activate"
 
     - name: Start Flask app
-      command: /bin/bash -c "export FLASK_APP=/home/ubuntu/flask_dir/project.py && /home/ubuntu/flask_dir/.myenv/bin/flask run --host=0.0.0.0 --port=5000 &"
+      command: /bin/bash -c "export FLASK_APP=~/flask_dir/project.py && ~/flask_dir/.myenv/bin/flask run --host=0.0.0.0 --port=5000"
       async: 0
       poll: 0
-      
+
     - name: Get the PID of the Flask app
       shell: "ps aux | grep 'python3 project.py' | grep -v grep | awk '{print $2}'"
       register: flask_pid
@@ -25,21 +21,4 @@
     - name: Stop Flask app after 60 seconds
       shell: "sleep 60 && kill -TERM {{ flask_pid.stdout }}"
       ignore_errors: yes
-
-    # - name: Start Flask app
-    #   command: /bin/bash -c "export FLASK_APP=/home/ubuntu/flask_dir/project.py"
-    #   command: /bin/bash -c "home/ubuntu/flask_dir/.myenv/bin/flask run --host=0.0.0.0 --port=5000 &"
-    #   async: 0
-    #   poll: 0
-    #   environment:
-    #     HOME: ~/  # Set the home directory explicitly
-    
-    # - name: Get the PID of the Flask app
-    #   command: "pgrep -f 'python3 /full/path/to/flask_dir/project.py'"
-    #   register: flask_pid
-    #   ignore_errors: yes
-    
-    # - name: Stop Flask app after 60 seconds
-    #   command: "sleep 60 && kill -TERM {{ flask_pid.stdout }}"
-    #   ignore_errors: yes
 
