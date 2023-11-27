@@ -28,7 +28,6 @@
           - python3-devel
           - python3-venv
           - git
-          - firewalld
         state: present
       when: ansible_pkg_mgr == "yum"
 
