@@ -13,12 +13,12 @@
       async: 0
       poll: 0
 
-    - name: Get the PID of the Flask app
-      shell: "ps aux | grep 'python3 project.py' | grep -v grep | awk '{print $2}'"
-      register: flask_pid
-      ignore_errors: yes
+    # - name: Get the PID of the Flask app
+    #   shell: "ps aux | grep 'python3 project.py' | grep -v grep | awk '{print $2}'"
+    #   register: flask_pid
+    #   ignore_errors: yes
 
-    - name: Stop Flask app after 60 seconds
-      shell: "sleep 60 && kill -TERM {{ flask_pid.stdout }}"
-      ignore_errors: yes
+    # - name: Stop Flask app after 60 seconds
+    #   shell: "sleep 60 && kill -TERM {{ flask_pid.stdout }}"
+    #   ignore_errors: yes
 
