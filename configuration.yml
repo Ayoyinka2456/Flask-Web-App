@@ -39,6 +39,16 @@
         mode: 0777
         owner: ubuntu
         group: ubuntu
+      when: ansible_pkg_mgr == "apt"
+
+    - name: Create a directory
+      file:
+        path: flask_dir
+        state: directory
+        mode: 0777
+        owner: centos
+        group: centos
+      when: ansible_pkg_mgr == "yum"
 
     # - name: Create a directory
     #   file:
