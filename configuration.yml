@@ -22,7 +22,7 @@
       when: ansible_pkg_mgr == "apt"
 
     - name: Install necessary packages for yum
-      dnf:
+      yum:
         name:
           - python3-pip
           - python3-devel
@@ -30,7 +30,18 @@
           - git
           - firewalld
         state: present
-      when: ansible_pkg_mgr == "dnf"
+      when: ansible_pkg_mgr == "yum"
+
+      #     - name: Install necessary packages for yum
+      # dnf:
+      #   name:
+      #     - python3-pip
+      #     - python3-devel
+      #     - python3-venv
+      #     - git
+      #     - firewalld
+      #   state: present
+      # when: ansible_pkg_mgr == "dnf"
 
     - name: Create a directory
       file:
