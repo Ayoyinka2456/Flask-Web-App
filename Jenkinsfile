@@ -25,12 +25,12 @@ pipeline {
         }
         stage('Configure servers') {
             steps {
-                sh "cd ${env.WORKSPACE}/ && ansible-playbook config2.yml -i hosts.ini"
+                sh "cd ${env.WORKSPACE}/ && ansible-playbook configuration.yml -i hosts.ini"
             }
         }
         stage('Build the main project.py') {
             steps {
-                sh "cd ${env.WORKSPACE}/ && ansible-playbook -e 'external_yaml_file=project.py' deploy2.yml -i hosts.ini"
+                sh "cd ${env.WORKSPACE}/ && ansible-playbook -e 'external_yaml_file=project.py' deployment.yml -i hosts.ini"
             }
         }
     }
