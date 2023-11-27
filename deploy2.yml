@@ -10,10 +10,10 @@
         x: "{{ ansible_env.USER }}"
 
     - name: Activate virtual environment
-      command: /bin/bash -c "source ~/flask_dir/.myenv/bin/activate"
+      command: /bin/bash -c "source /home/ubuntu/flask_dir/.myenv/bin/activate"
 
     - name: Start Flask app
-      command: /bin/bash -c "export FLASK_APP=/home/ubuntu/flask_dir/project.py && ~/flask_dir/.myenv/bin/flask run --host=0.0.0.0 --port=5000 &"
+      command: /bin/bash -c "export FLASK_APP=/home/ubuntu/flask_dir/project.py && /home/ubuntu/flask_dir/.myenv/bin/flask run --host=0.0.0.0 --port=5000 &"
       async: 0
       poll: 0
       
